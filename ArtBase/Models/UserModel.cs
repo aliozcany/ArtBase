@@ -1,10 +1,15 @@
-﻿namespace ArtBase.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ArtBase.Models
 {
     public class UserModel
     {
-        public int Id { get; set; }
+        [Key]
+        public int UserID { get; set; }
         public string Username { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Password { get; set; }
         public int RoleId { get; set; }
         public RoleModel Role { get; set; }

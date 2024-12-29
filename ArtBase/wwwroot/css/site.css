@@ -20,3 +20,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+.image-container {
+    display: flex;
+    justify-content: center; /* Yatay ortalama */
+    align-items: center; /* Dikey ortalama */
+    height: 100px;
+}
+
+.center-image {
+    max-width: 100px; /* Resmin geniþliðini sýnýrla */
+    height: auto; /* Oranýný koruyarak yüksekliði otomatik ayarla */
+}
+
+.btn-login {
+    background-color: #800000; /* Özel arka plan rengi */
+    border-color: #000000; /* Kenarlýk rengi */
+    color: white;
+}

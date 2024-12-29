@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Film veya Dizi Ara";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Film veya Dizi Ara</h1>
+    <form method="post" action="/Search/Results">
+        <div class="form-group">
+            <input type="text" name="query" class="form-control" placeholder="Aramak istediğiniz filmi veya diziyi yazın..." />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Ara</button>
+    </form>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="text-danger mt-3">@ViewBag.Error</p>
+    }
+</div>

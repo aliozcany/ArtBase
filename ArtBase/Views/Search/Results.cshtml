@@ -1,0 +1,51 @@
+﻿@model List<ArtBase.Models.ResultItem>
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Arama Sonuçları</h1>
+
+    <div class="row mt-4">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(item.Poster_Path))
+                        {
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/@item.Poster_Path" alt="@item.Name" />
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src="/images/no-poster-available.png" alt="Poster Yok" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                @if (!string.IsNullOrEmpty(item.Name))
+                                {
+                                    @item.Name
+                                }
+                                else if (!string.IsNullOrEmpty(item.Title))
+                                {
+                                    @item.Title
+                                }
+                            </h5>
+                            <p><strong>Ülke:</strong> @(item.Origin_Country != null ? string.Join(", ", item.Origin_Country) : "Bilinmiyor")</p>
+                            <p><strong>Puan:</strong> @(item.Vote_Average?.ToString("F1") ?? "Bilinmiyor") (@(item.Vote_Count ?? 0) oy)</p>
+                            <p><strong>Açıklama:</strong> @(string.IsNullOrEmpty(item.Overview) ? "Açıklama yok." : item.Overview)</p>
+                            <p><strong>Türler:</strong> @(item.genreName != null ? string.Join(", ", item.genreName) : "Tür bilgisi yok.")</p>
+                            <a asp-controller="Search" asp-action="Zort" asp-route-id="@item.Id" class="btn btn-primary">Detay</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Sonuç bulunamadı.</p>
+        }
+    </div>
+</div>

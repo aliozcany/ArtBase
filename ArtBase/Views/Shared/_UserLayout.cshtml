@@ -12,7 +12,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #800000;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <!-- Logo -->
+                <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Dashboard">
                     <img src="~/images/Artbase_newLogo.png" alt="ArtBase Logo" style="height: 80px;" />
                 </a>
 
@@ -21,23 +22,42 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Navbar içeriği -->
+                <!-- Navbar İçeriği -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        <!-- Arama Çubuğu -->
+                        <li class="nav-item">
+                            <form asp-controller="Search" asp-action="Results" method="post" class="d-flex me-3">
+                                <input type="text" name="query" placeholder="Film ara..." class="form-control me-2" required />
+                                <button type="submit" class="btn btn-outline-light">Ara</button>
+                            </form>
+                        </li>
                         <!-- Kullanıcı Menüsü -->
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Oturum Aç</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="/User/Profile">Profilim</a>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="LogOut" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-link nav-link text-light">Çıkış Yap</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Oturum Aç</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -47,9 +67,10 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - ArtBase - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - ArtBase
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
