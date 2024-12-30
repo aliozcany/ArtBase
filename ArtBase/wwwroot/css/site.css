@@ -17,9 +17,9 @@ html {
   min-height: 100%;
 }
 
-body {
+/*body {
   margin-bottom: 60px;
-}
+}*/
 .image-container {
     display: flex;
     justify-content: center; /* Yatay ortalama */
@@ -32,8 +32,39 @@ body {
     height: auto; /* Oranýný koruyarak yüksekliði otomatik ayarla */
 }
 
-.btn-login {
-    background-color: #800000; /* Özel arka plan rengi */
-    border-color: #000000; /* Kenarlýk rengi */
-    color: white;
+button.btn-login {
+    background-color: #800000 !important; /* Bordo arka plan */
+    border-color: #000000 !important; /* Siyah kenarlýk */
+    color: white !important; /* Beyaz metin */
 }
+
+
+/* Sayfa genel ayarlarý */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Navbar, içerik ve footer sýralanýr */
+    min-height: 100vh; /* Sayfa yüksekliðini ekran boyutuna göre ayarlar */
+}
+
+/* Ana içerik (RenderBody) */
+main {
+    flex: 1; /* Ýçeriðin esnek olarak alan kaplamasýný saðlar */
+}
+
+/* Footer düzeni */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.carousel-inner img {
+    width: 100%; /* Yatayda tam geniþlik */
+    height: auto; /* Dikey oraný korur */
+    object-fit: contain; /* Resmin tamamýný gösterir, boþ alan býrakabilir */
+    background-color: black; /* Boþ alan siyah olarak görünür */
+}
+

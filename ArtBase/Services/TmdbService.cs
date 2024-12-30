@@ -27,7 +27,7 @@ namespace ArtBase.Services
             tvList = await GetGenreList("tv");
             movieList = await GetGenreList("movie");
 
-            var response = await _httpClient.GetAsync($"{_baseUrl}/search/multi?query={query}&api_key={_apiKey}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/search/multi?query={query}&api_key={_apiKey}&language=en");
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
