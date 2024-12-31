@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace ArtBase.Models
 {
@@ -17,5 +18,7 @@ namespace ArtBase.Models
         public DbSet<FilmWatchlistModel> FilmWatchlist { get; set; }
         public DbSet<WatchedSeriesModel> SeriesWatchlist { get; set; }
         public DbSet<ReviewModel> Reviews { get; set; }
+        public DbSet<PostModel> Posts { get; set; } // Gönderiler tablosu
+
     }
 }

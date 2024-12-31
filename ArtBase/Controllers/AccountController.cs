@@ -34,7 +34,7 @@ public class AccountController : Controller
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
                 // User Dashboard'a yönlendir
-                return RedirectToAction("Dashboard", "User");
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -67,7 +67,7 @@ public class AccountController : Controller
 
             // Otomatik giriş ve User Dashboard'a yönlendirme
             await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("Dashboard", "User");
+            return RedirectToAction("Index", "Home");
         }
 
         foreach (var error in result.Errors)

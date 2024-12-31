@@ -1,0 +1,37 @@
+﻿@model List<PostViewModel>
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Gönderiler</h1>
+
+    <!-- Gönderi Ekleme Formu -->
+    <form asp-action="AddPost" method="post" class="mb-5">
+        <div class="form-group mb-3">
+            <textarea class="form-control" name="content" rows="3" placeholder="Bir şeyler yaz..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-login">Gönder</button>
+    </form>
+
+    <!-- Gönderiler Listesi -->
+    <div class="posts">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var post in Model)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@post.Username</h5> <!-- Kullanıcı adı -->
+                        <p class="card-text">@post.Content</p>
+                        <small class="text-muted">@post.CreatedAt.ToString("g")</small>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center text-muted">Henüz gönderi yok.</p>
+        }
+    </div>
+</div>
