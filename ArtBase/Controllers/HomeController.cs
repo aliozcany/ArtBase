@@ -4,6 +4,7 @@ using ArtBase.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtBase.Controllers
 {
@@ -29,6 +30,7 @@ namespace ArtBase.Controllers
                         .OrderByDescending(p => p.CreatedAt)
                         .Select(p => new PostViewModel
                         {
+                            PostID = p.PostID, //Gönderi kimliði
                             Content = p.Content,
                             CreatedAt = p.CreatedAt,
                             Username = p.User.UserName // Kullanýcý adý
@@ -62,6 +64,22 @@ namespace ArtBase.Controllers
                 _context.SaveChanges();
             }
 
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Admin")] // Sadece Admin rolü olan kullanýcýlar eriþebilir
+        public IActionResult DeletePost(int id)
+        {
+            // Gönderiyi veritabanýndan bul
+            var post = _context.Posts.FirstOrDefault(p => p.PostID == id);
+            if (post != null)
+            {
+                // Gönderiyi sil
+                _context.Posts.Remove(post);
+                _context.SaveChanges();
+            }
+
+            // Ýþlemden sonra gönderiler listesine dön
             return RedirectToAction("Index");
         }
 
