@@ -68,3 +68,30 @@ footer {
     background-color: black; /* Boþ alan siyah olarak görünür */
 }
 
+/* Yatay kaydýrýlabilir container */
+.scrollable-watchlist-container {
+    display: flex;
+    overflow-x: auto; /* Yatay kaydýrmayý etkinleþtir */
+    padding: 10px;
+    gap: 15px; /* Öðeler arasýnda boþluk */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Watchlist öðeleri */
+.watchlist-item {
+    flex: 0 0 auto; /* Esnemesini engelle */
+    width: 120px; /* Sabit geniþlik */
+    text-align: center;
+}
+
+/* Poster boyutlandýrmasý */
+.poster-thumbnail {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+

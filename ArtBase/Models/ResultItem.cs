@@ -13,6 +13,7 @@
         public string media_type { get; set; }
         public List<string>? Origin_Country { get; set; }
         public List<string>? genreName { get; set; }
+        public int? RunTime { get; set; }
     }
     public class GenreResponse{ public List<GenreList> Genres { get; set; } = new(); }
     public class GenreList

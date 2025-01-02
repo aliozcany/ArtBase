@@ -19,6 +19,6 @@ namespace ArtBase.Models
         public DbSet<WatchedSeriesModel> SeriesWatchlist { get; set; }
         public DbSet<ReviewModel> Reviews { get; set; }
         public DbSet<PostModel> Posts { get; set; } // Gönderiler tablosu
-
+        public DbSet<WatchListsModel> WatchLists { get; set; }// izleme listesi tablosu
     }
 }

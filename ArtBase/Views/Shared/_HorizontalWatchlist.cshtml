@@ -1,0 +1,18 @@
+﻿@model List<ArtBase.Models.WatchListsModel>
+
+@if (Model != null && Model.Any())
+{
+    <div class="scrollable-watchlist-container">
+        @foreach (var item in Model)
+        {
+            <div class="watchlist-item">
+                <img src="@item.PosterPath" alt="@item.Title" class="poster-thumbnail" />
+                <h6 class="text-center mt-2">@item.Title</h6>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-center text-muted">Watchlist boş.</p>
+}

@@ -13,6 +13,7 @@
             {
                 <div class="col-md-4 mb-4">
                     <div class="card">
+                        <!-- Poster -->
                         @if (!string.IsNullOrEmpty(item.Poster_Path))
                         {
                             <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/@item.Poster_Path" alt="@item.Name" />
@@ -21,24 +22,47 @@
                         {
                             <img class="card-img-top" src="/images/no-poster-available.png" alt="Poster Yok" />
                         }
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                @if (!string.IsNullOrEmpty(item.Name))
-                                {
-                                    @item.Name
-                                }
-                                else if (!string.IsNullOrEmpty(item.Title))
-                                {
-                                    @item.Title
-                                }
-                            </h5>
-                            <p><strong>Ülke:</strong> @(item.Origin_Country != null ? string.Join(", ", item.Origin_Country) : "Bilinmiyor")</p>
-                            <p><strong>Puan:</strong> @(item.Vote_Average?.ToString("F1") ?? "Bilinmiyor") (@(item.Vote_Count ?? 0) oy)</p>
-                            <p><strong>Açıklama:</strong> @(string.IsNullOrEmpty(item.Overview) ? "Açıklama yok." : item.Overview)</p>
-                            <p><strong>Türler:</strong> @(item.genreName != null ? string.Join(", ", item.genreName) : "Tür bilgisi yok.")</p>
-                            <a asp-controller="Search" asp-action="Zort" asp-route-id="@item.Id" class="btn btn-primary">Detay</a>
 
-                        </div>
+                        <!-- Form -->
+                        <form asp-action="AddToWatchlist" method="post">
+                            <div class="card-body">
+                                <!-- Hidden Inputs -->
+                                <input type="hidden" name="title" value=
+                                    "@if (!string.IsNullOrEmpty(item.Name))
+                                    {
+                                        @item.Name
+                                    }
+                                    else if (!string.IsNullOrEmpty(item.Title))
+                                    {
+                                        @item.Title
+                                    }" />
+                                <input type="hidden" name="posterPath" value=https://image.tmdb.org/t/p/w500/@item.Poster_Path />
+                                <input type="hidden" name="contentType" value="@item.genreName" />
+                                <input type="hidden" name="overview" value="@item.Overview" />
+                                <input type="hidden" name="runtime" value="@item.RunTime" />
+
+                                <!-- Görünen İçerikler -->
+                                <h5 class="card-title">
+                                    @if (!string.IsNullOrEmpty(item.Name))
+                                    {
+                                        @item.Name
+                                    }
+                                    else if (!string.IsNullOrEmpty(item.Title))
+                                    {
+                                        @item.Title
+                                    }
+                                </h5>
+                                <p><strong>Ülke:</strong> @(item.Origin_Country != null ? string.Join(", ", item.Origin_Country) : "Bilinmiyor")</p>
+                                <p><strong>Puan:</strong> @(item.Vote_Average?.ToString("F1") ?? "Bilinmiyor") (@(item.Vote_Count ?? 0) oy)</p>
+                                <p><strong>Açıklama:</strong> @(string.IsNullOrEmpty(item.Overview) ? "Açıklama yok." : item.Overview)</p>
+                                <p><strong>Türler:</strong> @(item.genreName != null ? string.Join(", ", item.genreName) : "Tür bilgisi yok.")</p>
+
+                                <!-- Watchlist'e Ekle Butonu -->
+                                <div class="mt-3 text-end">
+                                    <button type="submit" class="btn btn-login">Watchlist'e Ekle</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             }
