@@ -32,6 +32,9 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
+                            <a class="nav-link text-light" href="http://localhost:5173?username=@User.Identity.Name">Okuduklarım</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-light" href="/Search/Watchlist">İzlediklerim</a>
                         </li>
                         <li class="nav-item">
