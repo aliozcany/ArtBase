@@ -5,11 +5,13 @@
 
 <div class="container mt-5">
     <h2 class="text-lg-start"><strong>Kullanıcı Adı:</strong> @ViewBag.UserName</h2>
-    <br /> <br />
-
+    <br /><br />
 
     <h3>Toplam İzleme Süresi: @ViewBag.TotalRuntime</h3>
+
+    <!-- İzlediklerim Bölümü -->
     <h3>İzlediklerim</h3>
     @Html.Partial("~/Views/Shared/_HorizontalWatchlist.cshtml", Model)
+    
+   
 </div>
-

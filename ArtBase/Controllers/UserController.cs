@@ -30,13 +30,13 @@ public class UserController : Controller
         var user = _context.Users.FirstOrDefault(u => u.Id == userId); // Kullanıcı bilgileri
         ViewBag.UserName = user?.UserName ?? "Bilinmiyor"; // Kullanıcı adı
 
+
         // Kullanıcıya ait Watchlist'i çek
         var watchlist = _context.WatchLists
             .Where(w => w.UserId == userId)
             .ToList();
 
-
-        string totalRuntime = null;
+            string totalRuntime = null;
 
         using (var command = _context.Database.GetDbConnection().CreateCommand())
         {
@@ -57,8 +57,9 @@ public class UserController : Controller
             }
         }
 
-        ViewBag.TotalRuntime = totalRuntime ?? "0 gün, 0 saat, 0 dakika";
+        
 
+        ViewBag.TotalRuntime = totalRuntime ?? "0 gün, 0 saat, 0 dakika";
 
         return View(watchlist); // Watchlist'i View'e gönder
     }
